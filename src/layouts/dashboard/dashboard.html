@@ -1,0 +1,46 @@
+<div class="dashboard">
+  <div class="head">
+    <div class="logo">
+      <img src="../../assets/logo.png" />
+    </div>
+    <div class="nav">
+      <div class="left">
+        <bread-crumb></bread-crumb>
+      </div>
+      <div class="right">
+        <div class="search r-item r-btn">
+          <i class="el-icon-search"></i>
+        </div>
+        <div class="bell r-item r-btn">
+          <i class="el-icon-bell"></i>
+        </div>
+        <div class="user-info r-item">
+          <div class="user-info-container">
+            <div class="user-avatar">
+              <img :src="basic.avatar">
+            </div>
+            <div class="name">
+              {{basic.realName}}
+            </div>
+          </div>
+        </div>
+        <!-- <div class="create-student r-item r-btn" @click="routePath('/dashboard/bCreateStudent')">
+          <div class="create-student-container">
+            <i class="el-icon-plus"></i>
+            <span style="font-size: 14px;line-height: 18px;">添加学生</span>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <div class="menu">
+      <gec-menu></gec-menu>
+    </div>
+    <div class="bc">
+      <div class="content">
+        <router-view />
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="page">
+  <div class="basic-info-container" v-loading="loading">
+    <div class="info-box info-box-success">
+      <div class="num"> {{pageData.tableData.length > 0 ? 'Panda ' + pageData.tableData[0].version : '无'}}  {{pageData.tableData.length > 0 ? pageData.tableData[0].name : ''}}</div>
+      <div class="name">当前版本</div>
+    </div>
+    <div class="info-box info-box-default">
+      <div class="num"><number-grow :value="pageData.count"></number-grow>个</div>
+      <div class="name">历史版本</div>
+    </div>
+  </div>
+  <el-card class="box-card">
+    <div slot="header" class="clearfix">
+      <span>历史版本</span>
+    </div>
+    <div class="main-body" v-loading="loading">
+      <div class="filter">
+        <el-input v-model="filter.name" placeholder="版本号/版本名称" style="width: 300px;"></el-input>
+        <el-button type="primary" @click="handleSearchSubmit">查询</el-button>
+        <el-button @click="handleClearFilter">重置</el-button>
+        <el-button type="primary" icon="el-icon-plus" style="float:right;">发布新版本</el-button>
+      </div>
+      <div class="info" v-if="filterShow">
+        <el-alert
+          :title="'本次筛选共有 '+pageData.count+' 条数据'"
+          type="info"
+          show-icon>
+        </el-alert>
+      </div>
+      <div class="list-body">
+        <div class="list-item" v-for="item,index in pageData.tableData" :key="index">
+          <div class="avatar">
+            <img src="./images/logo.png" />
+          </div>
+          <div class="list-info">
+            <div class="name">Panda {{item.version}} {{item.name}}</div>
+            <div class="address"><img v-if="item.mac !== ''" src="./images/apple.png" /> <img v-if="item.win !== ''" src="./images/win.png" /></div>
+          </div>
+          <div class="time">
+            <div class="">发布时间</div>
+            <div class="time-moment">{{item.createdAt | moment}}</div>
+          </div>
+          <div class="list-ops">
+            <el-button @click="handleView(item)" type="text">查看</el-button>
+            <el-button @click="handleDelete(item)" type="text">删除</el-button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <el-dialog
+      title="提示"
+      :visible.sync="dialogVisible"
+      width="600px"
+      :before-close="handleClose">
+      <div>
+        <el-form ref="form" :model="form" label-width="80px">
+          <el-form-item label="版本号">
+            <el-input v-model="form.version"></el-input>
+          </el-form-item>
+          <el-form-item label="版本名称">
+            <el-input v-model="form.name"></el-input>
+          </el-form-item>
+          <el-form-item label="描述">
+            <el-input v-model="form.name" type="textarea"></el-input>
+          </el-form-item>
+          <el-form-item label="版本名称">
+            <el-input v-model="form.name"></el-input>
+          </el-form-item>
+          <el-form-item label="版本名称">
+            <el-input v-model="form.name"></el-input>
+          </el-form-item>
+        </el-form>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
+  </el-card>
+</div>
