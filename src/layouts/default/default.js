@@ -37,7 +37,8 @@ export default {
       const uri = 'https://api.panda.ipietech.com/login/login.html'
       const redirectUri = encodeURIComponent(uri)
       const appId = 'cli_9dbc613a9d7f510c'
-      const url = `https://open.feishu.cn/connect/qrconnect/page/sso/?redirect_uri=${redirectUri}&app_id=${appId}&state=panda_login_page_dev`
+      const state =  process.env.NODE_ENV === 'development' ? 'panda_login_page_dev' : 'panda_login_page'
+      const url = `https://open.feishu.cn/connect/qrconnect/page/sso/?redirect_uri=${redirectUri}&app_id=${appId}&state=${state}`
       window.location.href = url
     }
   }

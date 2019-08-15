@@ -4,7 +4,7 @@
  */
 const url = {
   dev: 'http://localhost:9023',
-  pro: 'https://core.ipadmin.com'
+  pro: 'http://47.96.8.230:9023'
 }
 //
 export default {

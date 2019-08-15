@@ -18,7 +18,7 @@
         <el-input v-model="filter.name" placeholder="版本号/版本名称" style="width: 300px;"></el-input>
         <el-button type="primary" @click="handleSearchSubmit">查询</el-button>
         <el-button @click="handleClearFilter">重置</el-button>
-        <el-button type="primary" icon="el-icon-plus" style="float:right;">发布新版本</el-button>
+        <el-button type="primary" icon="el-icon-plus" style="float:right;" @click="dialogVisible = true">发布新版本</el-button>
       </div>
       <div class="info" v-if="filterShow">
         <el-alert
@@ -41,39 +41,39 @@
             <div class="time-moment">{{item.createdAt | moment}}</div>
           </div>
           <div class="list-ops">
-            <el-button @click="handleView(item)" type="text">查看</el-button>
+            <!-- <el-button @click="handleView(item)" type="text">查看</el-button> -->
             <el-button @click="handleDelete(item)" type="text">删除</el-button>
           </div>
         </div>
       </div>
     </div>
     <el-dialog
-      title="提示"
+      title="发布新版本"
       :visible.sync="dialogVisible"
       width="600px"
       :before-close="handleClose">
       <div>
-        <el-form ref="form" :model="form" label-width="80px">
+        <el-form ref="form" :model="form" label-width="120px">
           <el-form-item label="版本号">
-            <el-input v-model="form.version"></el-input>
+            <el-input v-model="form.version" placeholder="例如：0.0.0"></el-input>
           </el-form-item>
           <el-form-item label="版本名称">
-            <el-input v-model="form.name"></el-input>
+            <el-input v-model="form.name" placeholder="例如：Beta"></el-input>
           </el-form-item>
           <el-form-item label="描述">
-            <el-input v-model="form.name" type="textarea"></el-input>
+            <el-input v-model="form.desc" type="textarea" :row="5" placeholder="可以输入版本更替内容"></el-input>
           </el-form-item>
-          <el-form-item label="版本名称">
-            <el-input v-model="form.name"></el-input>
+          <el-form-item label="Mac 客户端">
+            <el-input v-model="form.mac" placeholder="贴入下载地址"></el-input>
           </el-form-item>
-          <el-form-item label="版本名称">
-            <el-input v-model="form.name"></el-input>
+          <el-form-item label="Win 客户端">
+            <el-input v-model="form.win" placeholder="贴入下载地址"></el-input>
           </el-form-item>
         </el-form>
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        <el-button type="primary" @click="handleCreateSubmit">确 定</el-button>
       </span>
     </el-dialog>
   </el-card>
