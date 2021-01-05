@@ -12,7 +12,7 @@
     "upload": "scp -r ./dist/* root@47.96.8.230:/www/wwwroot/op_panda_ipietech_com"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "element-ui": "^2.5.4",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
